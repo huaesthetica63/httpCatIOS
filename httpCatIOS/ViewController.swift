@@ -2,6 +2,7 @@ import UIKit
 
 class ViewController: UIViewController {
     private let catURL: String = "https://http.cat"//url to funny cats
+    public var catCode: Int = 0
     private let imageView: UIImageView = { //imagebox for holding cats
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -23,18 +24,24 @@ class ViewController: UIViewController {
         imageView.center = view.center
         view.addSubview(randButton)
         randButton.addTarget(self, action: #selector(randCatButtonPushed), for: .touchUpInside)
-        httpCat()
+        if catCode == 0{
+            catCode = getRandomHttp()
+        }
+        httpCat(code: catCode)
     }
     @objc func randCatButtonPushed(){
-        httpCat() //set an image from url
+        httpCat(code: getRandomHttp()) //set an image from url
     }
     override func viewDidLayoutSubviews() { //set random button to normal position
         super.viewDidLayoutSubviews()
         randButton.frame = CGRect(x: 30, y: view.frame.size.height-100-view.safeAreaInsets.bottom, width: view.frame.size.width-50, height: 50)
     }
-    func httpCat(){//get image from url
+    func getRandomHttp()->Int{
         var code = Int(HTTPStatusCode.allCases.randomElement()?.rawValue ?? 0)
         //get random status code from enumeration
+        return code
+    }
+    func httpCat(code: Int){//get image from url
         var url = URL(string: catURL+"//"+"\(code)")!
         if let data = try? Data(contentsOf: url) {
             imageView.image = UIImage(data: data)//set an image

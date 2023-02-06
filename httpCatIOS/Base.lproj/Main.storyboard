@@ -16,13 +16,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="HTTP-Cats" id="dBJ-bH-yNw"/>
+                    <navigationItem key="navigationItem" title="HTTP-Cats" id="dBJ-bH-yNw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="kW8-jq-BB9">
+                            <connections>
+                                <segue destination="PHp-W5-rIP" kind="show" id="XJX-9C-4sb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="863.768115942029" y="34.821428571428569"/>
+        </scene>
+        <!--HTTP codes-->
+        <scene sceneID="23F-GP-uLJ">
+            <objects>
+                <tableViewController storyboardIdentifier="TableViewController" id="PHp-W5-rIP" customClass="TableViewController" customModule="httpCatIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="N8K-Ze-kls">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="systemGreenColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="J8m-lq-yyG">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J8m-lq-yyG" id="CBo-9t-paD">
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PHp-W5-rIP" id="oI5-Ex-tqB"/>
+                            <outlet property="delegate" destination="PHp-W5-rIP" id="r7G-3P-CNQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="HTTP codes" id="FWW-Yp-hhI"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MNP-3l-0Tf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1738" y="35"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="puh-mW-tCi">
@@ -47,8 +84,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
