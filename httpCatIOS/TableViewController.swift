@@ -46,6 +46,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         cell.backgroundColor = .green
+        cell.textLabel?.textColor = .black
         let name = "\(HTTPStatusCode.allCases[indexPath.row])"
         let code = "\(HTTPStatusCode.allCases[indexPath.row].rawValue)"
         cell.textLabel?.text = code + ": " + name

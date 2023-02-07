@@ -10,3 +10,7 @@ NEW FEATURE!
 <img width="331" alt="image" src="https://user-images.githubusercontent.com/46458667/217090247-45c0d692-f7ca-47bb-9bd4-ab6666db93c7.png">
 <br><br>
 I've added list of http-codes (uitableviewcontroller) for choosing concrete image
+<br><br>
+NEW FEATURE!
+<br><br>
+I've added swiping images at main viewcontroller
