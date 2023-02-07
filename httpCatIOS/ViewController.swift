@@ -2,13 +2,26 @@ import UIKit
 
 class ViewController: UIViewController {
     private let catURL: String = "https://http.cat"//url to funny cats
-    public var catCode: Int = 0
+    public var catCode: Int = -1
     private let imageView: UIImageView = { //imagebox for holding cats
         let imageView = UIImageView()
+        imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .white
         return imageView
     }()
+    @objc func slideRight(_ sender: UISwipeGestureRecognizer){
+        if catCode >= 1{
+            catCode=catCode-1
+            httpCat(code: catCode)
+        }
+    }
+    @objc func slideLeft(_ sender: UISwipeGestureRecognizer){
+        if catCode < HTTPStatusCode.allCases.count-1{
+            catCode=catCode+1
+            httpCat(code: catCode)
+        }
+    }
     private let randButton: UIButton = { //button for getting more funny cats
         let randButton = UIButton()
         randButton.backgroundColor = .white
@@ -22,9 +35,16 @@ class ViewController: UIViewController {
         view.addSubview(imageView)
         imageView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
         imageView.center = view.center
+        var slideLeft = UISwipeGestureRecognizer(target: self, action: #selector(slideLeft(_:)))
+        slideLeft.direction = .left
+        imageView.addGestureRecognizer(slideLeft)
+        var slideRight = UISwipeGestureRecognizer(target: self, action: #selector(slideRight(_:)))
+        slideRight.direction = .right
+        imageView.addGestureRecognizer(slideRight)
+        
         view.addSubview(randButton)
         randButton.addTarget(self, action: #selector(randCatButtonPushed), for: .touchUpInside)
-        if catCode == 0{
+        if catCode == -1{
             catCode = getRandomHttp()
         }
         httpCat(code: catCode)
@@ -37,12 +57,13 @@ class ViewController: UIViewController {
         randButton.frame = CGRect(x: 30, y: view.frame.size.height-100-view.safeAreaInsets.bottom, width: view.frame.size.width-50, height: 50)
     }
     func getRandomHttp()->Int{
-        var code = Int(HTTPStatusCode.allCases.randomElement()?.rawValue ?? 0)
+        var code = Int.random(in: 0..<HTTPStatusCode.allCases.count)
         //get random status code from enumeration
         return code
     }
     func httpCat(code: Int){//get image from url
-        var url = URL(string: catURL+"//"+"\(code)")!
+        let httpcode = HTTPStatusCode.allCases[code].rawValue
+        var url = URL(string: catURL+"//"+"\(httpcode)")!
         if let data = try? Data(contentsOf: url) {
             imageView.image = UIImage(data: data)//set an image
         }

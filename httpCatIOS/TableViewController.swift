@@ -28,7 +28,7 @@ class TableViewController: UITableViewController {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       let destination = ViewController()
-      let selectedCode = HTTPStatusCode.allCases[indexPath.row].rawValue
+      let selectedCode = indexPath.row
       destination.catCode = selectedCode
       navigationController?.pushViewController(destination, animated: true)
     }
